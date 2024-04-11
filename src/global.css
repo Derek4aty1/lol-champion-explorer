@@ -1,0 +1,210 @@
+:root {
+	--blue1: #cdfafa;
+	--blue2: #0ac8b9;
+	--blue3: #0397ab;
+	--blue4: #005a82;
+	--blue5: #0a323c;
+	--blue6: #091428;
+	--blue7: #0a1428;
+	--blue-gradient: linear-gradient(to right, var(--blue4), var(--blue2));
+	--dark-blue-gradient: linear-gradient(to right, var(--blue6), var(--blue7));
+
+	--gold1: #f0e6d2;
+	--gold2: #c8aa6e;
+	--gold3: #c8aa6e; /* The exact same as gold2 */
+	--gold4: #c89b3c;
+	--gold5: #785a28;
+	--gold6: #463714;
+	--gold7: #32281e;
+	--gold-gradient: linear-gradient(to right, var(--gold5), var(--gold4));
+
+	--gray1: #a09b8c;
+	--gray1-5: #5b5a56;
+	--gray2: #3c3c41;
+	--gray3: #1e2328;
+	--gray-cool: #1e282d;
+	--hextech-black: #010a13;
+}
+
+@font-face {
+	font-family: 'Spiegel';
+	src:
+		url('/fonts/Spiegel/Spiegel-Regular.otf') format('opentype'),
+		url('/fonts/Spiegel/Spiegel_TT_Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Spiegel';
+	src:
+		url('/fonts/Spiegel/Spiegel-Bold.otf') format('opentype'),
+		url('/fonts/Spiegel/Spiegel_TT_Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Spiegel';
+	src:
+		url('/fonts/Spiegel/Spiegel-RegularItalic.otf') format('opentype'),
+		url('/fonts/Spiegel/Spiegel_TT_Regular_Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Spiegel';
+	src:
+		url('/fonts/Spiegel/Spiegel-BoldItalic.otf') format('opentype'),
+		url('/fonts/Spiegel/Spiegel_TT_Bold_Italic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Spiegel';
+	src:
+		url('/fonts/Spiegel/Spiegel-SemiBold.otf') format('opentype'),
+		url('/fonts/Spiegel/Spiegel_TT_SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Spiegel';
+	src:
+		url('/fonts/Spiegel/Spiegel-SemiBoldItalic.otf') format('opentype'),
+		url('/fonts/Spiegel/Spiegel_TT_SemiBold_Italic.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-Regular.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-Bold.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-BoldItalic.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-BoldItalic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-Italic.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-Light.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-LightItalic.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-Medium.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-MediumItalic.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-Heavy.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-Heavy.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Beaufort';
+	src:
+		url('/fonts/Beaufort/BeaufortforLOL-HeavyItalic.otf') format('opentype'),
+		url('/fonts/Beaufort/BeaufortforLOL-HeavyItalic.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+* {
+	border: 0 solid;
+	cursor: url('/images/cursor.png'), auto;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-width: 100vw;
+	overflow-x: hidden;
+	font-family: 'Spiegel';
+	background-color: var(--hextech-black);
+	color: var(--gold1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Beaufort';
+	font-weight: bold;
+}
+
+img {
+	color: transparent;
+}
+
+@media (hover: hover) {
+	a:hover,
+	button:hover,
+	img:hover {
+		cursor: url('/images/cursor-select.png'), auto;
+	}
+}
