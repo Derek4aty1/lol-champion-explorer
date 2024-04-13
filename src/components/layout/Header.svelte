@@ -1,7 +1,7 @@
 <header>
 	<nav class="site-nav">
 		<a class="home-link" href="/">
-			<img class="home-logo" src="/images/l-icon-high-res.png" alt="League of Legends Letter L logo" />
+			<img class="home-logo" src="/images/128x128-l-icon.png" alt="League of Legends Letter L logo" />
 		</a>
 	</nav>
 </header>

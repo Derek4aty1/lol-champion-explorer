@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Derek4aty1/lol-champion-explorer">
-    <img src="static/images/l-icon-high-res.png" alt="Logo" width="80" height="80">
+    <img src="static/images/128x128-l-icon.png" alt="Logo">
   </a>
   
 <h3 align="center">League&nbsp;of&nbsp;Legends Champion Explorer</h3>
@@ -20,8 +20,6 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -29,8 +27,8 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#disclaimer">Disclaimer</a></li>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#disclaimer">Disclaimer</a></li>
       </ul>
     </li>
     <li><a href="#development">Development</a></li>
@@ -39,25 +37,16 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-This is a personal SvelteKit project showcasing all of the current champions in League&nbsp;of&nbsp;Legends. It consumes the [official Data Dragon API]([https://duckduckgo.com](https://developer.riotgames.com/docs/lol)) by Riot Games.
+This is a personal SvelteKit project showcasing all of the current champions in League&nbsp;of&nbsp;Legends. It consumes the [official Data Dragon API](<[https://duckduckgo.com](https://developer.riotgames.com/docs/lol)>) by Riot Games.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Disclaimer
-League&nbsp;of&nbsp;Legends Champion Explorer is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
+
 [![Svelte][Svelte-badge]][Svelte-url]
 [![TypeScript][TypeScript-badge]][TypeScript-url]
 [![ESLint][ESLint-badge]][ESLint-url]
@@ -67,9 +56,14 @@ League&nbsp;of&nbsp;Legends Champion Explorer is not endorsed by Riot Games and 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Disclaimer
 
+League&nbsp;of&nbsp;Legends Champion Explorer is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- DEVELOPMENT -->
+
 ## Development
 
 Once you've cloned the repository and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
@@ -88,15 +82,15 @@ npm run build
 ```
 
 And then you can preview the production build:
+
 ```bash
 npm run preview
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -112,18 +106,16 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
+
 [Svelte-badge]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
 [Svelte-url]: https://svelte.dev/
 [TypeScript-badge]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white

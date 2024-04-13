@@ -198,7 +198,12 @@ h6 {
 }
 
 img {
+	background-color: transparent;
 	color: transparent;
+}
+
+figcaption {
+	font-style: italic;
 }
 
 @media (hover: hover) {

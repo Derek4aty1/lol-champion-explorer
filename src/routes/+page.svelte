@@ -7,13 +7,15 @@
 	<title>League of Legends Champion Explorer</title>
 </svelte:head>
 
-<section>
+<section class="page-container">
 	<h1 class="header-text">LEAGUE&nbsp;OF&nbsp;LEGENDS CHAMPION&nbsp;EXPLORER</h1>
 	<div class="champion-list">
 		{#each allChampions as { name, squareIconUrl }}
 			<figure class="champion-figure">
-				<a href="/{name}"><img src={squareIconUrl} alt={`${name} square icon`} loading="lazy" /></a>
-				<figcaption class="champion-caption">{name}</figcaption>
+				<a href="/{name}">
+					<img class="square-icon" src={squareIconUrl} alt={`${name} square icon`} loading="lazy" />
+				</a>
+				<figcaption class="champion-caption">{name.toUpperCase()}</figcaption>
 			</figure>
 		{/each}
 	</div>
@@ -24,7 +26,7 @@
 		--square-icon-size: 120px;
 	}
 
-	section {
+	.page-container {
 		display: contents;
 	}
 
@@ -61,9 +63,11 @@
 
 	.champion-caption {
 		margin-top: 0.25em;
+		font-family: Beaufort;
+		font-weight: bold;
 	}
 
-	img {
+	.square-icon {
 		border: 1px solid black;
 		transition: 0.2s;
 		min-width: var(--square-icon-size);
@@ -71,7 +75,7 @@
 	}
 
 	@media (hover: hover) {
-		img:hover {
+		.square-icon:hover {
 			transform: scale(1.05);
 			border-color: var(--gold4);
 		}

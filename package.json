@@ -1,6 +1,6 @@
 {
-	"name": "lol-project",
-	"version": "0.0.1",
+	"name": "lol-champion-explorer",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",

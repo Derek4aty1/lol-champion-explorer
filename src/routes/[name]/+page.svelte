@@ -22,24 +22,27 @@
 </script>
 
 <svelte:head>
-	<title>{champion.name} - League of Legends Champion Explorer</title>
-	{#each champion.skins as skin}
-		<link rel="preload" as="image" href={skin.splashUrl} />
-	{/each}
-	<link rel="preload" as="image" href={champion.passive.imageUrl} />
+	<!-- Preload previous, current, and next skins -->
+	{#key skin}
+		<link rel="preload" as="image" href={champion.skins[skinIndex === 0 ? champion.skins.length - 1 : skinIndex - 1].splashUrl} />
+		<link rel="preload" as="image" href={champion.skins[skinIndex].splashUrl} />
+		<link rel="preload" as="image" href={champion.skins[skinIndex === champion.skins.length - 1 ? 0 : skinIndex + 1].splashUrl} />
+	{/key}
+	<!-- <link rel="preload" as="image" href={champion.passive.imageUrl} />
 	{#each champion.spells as spell}
 		<link rel="preload" as="image" href={spell.imageUrl} />
-	{/each}
+	{/each} -->
+	<title>{champion.name} - League of Legends Champion Explorer</title>
 </svelte:head>
 
-<div class="base-container">
+<section class="page-container">
 	<a class="all-champions button" href="/">&laquo; All Champions</a>
 	<div class="champion-container">
 		<figure class="splash-container">
 			<button class="splash-link" type="button" on:click={changeSkinSplash}>
 				<img class="splash-image" src={skin.splashUrl} alt={`Splash art for ${skin.name} skin`} />
 			</button>
-			<figcaption>{skin.name}</figcaption>
+			<figcaption class="splash-caption">{skin.name}</figcaption>
 		</figure>
 		<div class="lore-container">
 			<h1 class="champion-header">{champion.name.toUpperCase()}, {champion.title.toUpperCase()}</h1>
@@ -54,10 +57,10 @@
 			<a class="next-champion button" href="/{nextChampName}">{nextChampName} &raquo;</a>
 		{/if}
 	</nav>
-</div>
+</section>
 
 <style>
-	.base-container {
+	.page-container {
 		display: flex;
 		flex-direction: column;
 		flex: auto;
@@ -104,15 +107,16 @@
 		margin: 0 1rem;
 		padding: 0;
 		display: flex;
+		background-color: transparent;
 	}
 
 	.splash-image {
 		max-width: 100%;
+		aspect-ratio: 1215 / 717; /* Full size */
 	}
 
-	figcaption {
+	.splash-caption {
 		margin-top: 0.75rem;
-		font-style: italic;
 		color: var(--gray1);
 	}
 
@@ -125,6 +129,8 @@
 	.champion-header {
 		margin: 0 0 0.5rem 0;
 		text-align: center;
+		font-size: 2rem;
+		font-style: italic;
 		color: var(--gold4);
 	}
 
