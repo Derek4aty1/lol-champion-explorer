@@ -68,10 +68,13 @@
 	}
 
 	.square-icon {
-		border: 1px solid black;
-		transition: 0.2s;
 		min-width: var(--square-icon-size);
 		min-height: var(--square-icon-size);
+		border: 1px solid black;
+		transition: transform 0.2s;
+		background-image: url(/images/loading-50x50.gif);
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 	@media (hover: hover) {

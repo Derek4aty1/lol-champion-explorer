@@ -1,7 +1,10 @@
 <header>
-	<nav class="site-nav">
+	<nav>
 		<a class="home-link" href="/">
-			<img class="home-logo" src="/images/128x128-l-icon.png" alt="League of Legends Letter L logo" />
+			<img src="/images/l-icon-128x128.png" alt="League of Legends Letter L logo" />
+		</a>
+		<a class="github-link" href="https://github.com/Derek4aty1/lol-champion-explorer" target="_blank">
+			<img src="/images/github-logo-white.svg" alt="Github logo" />
 		</a>
 	</nav>
 </header>
@@ -14,17 +17,22 @@
 		background-image: var(--gold-gradient);
 	}
 
-	.site-nav {
+	nav {
 		display: flex;
 	}
 
-	.home-link {
+	.home-link,
+	.github-link {
 		margin: 10px;
 		display: flex;
 		width: fit-content;
 	}
 
-	.home-logo {
+	.github-link {
+		margin-left: auto;
+	}
+
+	img {
 		width: 30px;
 		height: 30px;
 		transition: 0.2s;

@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Derek4aty1/lol-champion-explorer">
-    <img src="static/images/128x128-l-icon.png" alt="Logo">
+    <img src="static/images/l-icon-128x128.png" alt="Logo">
   </a>
   
 <h3 align="center">League&nbsp;of&nbsp;Legends Champion Explorer</h3>

@@ -1,8 +1,8 @@
 <footer>
 	<p>
 		Developed by Derek Huber 2024<br />
-		League&nbsp;of&nbsp;Legends Champion Explorer is an independent project and is not affiliated with or endorsed by Riot Games. All assets referenced
-		herein are the properties of their respective owners.
+		League&nbsp;of&nbsp;Legends Explorer is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved
+		in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
 	</p>
 </footer>
 
@@ -10,7 +10,9 @@
 	footer {
 		padding: 1rem;
 		display: flex;
+		align-self: center;
 		justify-content: center;
+		max-width: 66%;
 	}
 
 	p {

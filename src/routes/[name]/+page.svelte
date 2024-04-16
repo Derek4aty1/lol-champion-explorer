@@ -99,6 +99,7 @@
 		margin: 0;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		text-align: center;
 		width: 50%;
 	}
@@ -106,13 +107,19 @@
 	.splash-link {
 		margin: 0 1rem;
 		padding: 0;
-		display: flex;
+		width: fit-content;
+		min-width: min(100% - 2rem, 1215px);
+		max-width: 1215px;
 		background-color: transparent;
 	}
 
 	.splash-image {
 		max-width: 100%;
 		aspect-ratio: 1215 / 717; /* Full size */
+		background-image: url(/images/loading-200x200.gif);
+		background-size: 10%;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 	.splash-caption {
@@ -150,7 +157,7 @@
 		min-width: 5rem;
 	}
 
-	@media (width <= 1024px) {
+	@media (width <= 768px) {
 		.all-champions {
 			margin: 2rem 0 1rem 2rem;
 		}
