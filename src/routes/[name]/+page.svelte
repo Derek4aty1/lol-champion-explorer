@@ -157,7 +157,7 @@
 		min-width: 5rem;
 	}
 
-	@media (width <= 768px) {
+	@media screen and (orientation: portrait) and (width <= 768px) {
 		.all-champions {
 			margin: 2rem 0 1rem 2rem;
 		}
@@ -173,6 +173,7 @@
 
 		.splash-link {
 			margin: 0;
+			width: 100%
 		}
 
 		.lore-container {
