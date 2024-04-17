@@ -49,6 +49,7 @@ This is a personal SvelteKit project showcasing all of the current champions in 
 
 [![Svelte][Svelte-badge]][Svelte-url]
 [![TypeScript][TypeScript-badge]][TypeScript-url]
+[![Tailwind_CSS][Tailwind-badge]][Tailwind-url]
 [![ESLint][ESLint-badge]][ESLint-url]
 [![Prettier][Prettier-badge]][Prettier-url]
 [![Vite][Vite-badge]][Vite-url]
@@ -120,6 +121,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Svelte-url]: https://svelte.dev/
 [TypeScript-badge]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
 [TypeScript-url]: https://www.typescriptlang.org/
+[Tailwind-badge]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
 [ESLint-badge]: https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white
 [ESLint-url]: https://eslint.org/
 [Prettier-badge]: https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E

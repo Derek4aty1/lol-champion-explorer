@@ -35,149 +35,30 @@
 	<title>{champion.name} - League of Legends Champion Explorer</title>
 </svelte:head>
 
-<section class="page-container">
-	<a class="all-champions button" href="/">&laquo; All Champions</a>
-	<div class="champion-container">
-		<figure class="splash-container">
-			<button class="splash-link" type="button" on:click={changeSkinSplash}>
-				<img class="splash-image" src={skin.splashUrl} alt={`Splash art for ${skin.name} skin`} />
+<section class="flex flex-col flex-auto justify-center items-center">
+	<a href="/" class="ml-12 mt-8 mb-4 tall:mt-8 tall:ml-6 tall:mb-4 self-start ui-button">&laquo; All Champions</a>
+	<div class="mx-8 my-4 tall:mx-6 flex tall:flex-col tall:flex-wrap gap-4 justify-center items-center">
+		<figure class="flex flex-col items-center w-1/2 tall:w-full">
+			<button type="button" on:click={changeSkinSplash} class="mx-4 w-fit tall:w-full min-w-[min(100%-2rem,1215px)] max-w-[1215px]">
+				<img
+					src={skin.splashUrl}
+					alt={`Splash art for ${skin.name} skin`}
+					class="aspect-[1215/717] bg-loading-200x200 bg-10% bg-center bg-no-repeat"
+				/>
 			</button>
-			<figcaption class="splash-caption">{skin.name}</figcaption>
+			<figcaption class="mt-3 text-gray-1">{skin.name}</figcaption>
 		</figure>
-		<div class="lore-container">
-			<h1 class="champion-header">{champion.name.toUpperCase()}, {champion.title.toUpperCase()}</h1>
-			<p class="lore-text">{champion.lore}</p>
+		<div class="w-1/2 tall:w-full">
+			<h1 class="mb-2 italic text-3xl text-gold-4">{champion.name.toUpperCase()}, {champion.title.toUpperCase()}</h1>
+			<p>{champion.lore}</p>
 		</div>
 	</div>
-	<nav class="champion-nav-container">
+	<nav class="my-8 flex justify-center gap-4">
 		{#if previousChampName}
-			<a class="previous-champion button" href="/{previousChampName}">&laquo; {previousChampName}</a>
+			<a class="ui-button" href="/{previousChampName}">&laquo; {previousChampName}</a>
 		{/if}
 		{#if nextChampName}
-			<a class="next-champion button" href="/{nextChampName}">{nextChampName} &raquo;</a>
+			<a class="ui-button" href="/{nextChampName}">{nextChampName} &raquo;</a>
 		{/if}
 	</nav>
 </section>
-
-<style>
-	.page-container {
-		display: flex;
-		flex-direction: column;
-		flex: auto;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.button {
-		padding: 0.5rem;
-		text-align: center;
-		text-decoration: none;
-		color: var(--gold1);
-		background-color: var(--gray2);
-	}
-
-	@media (hover: hover) {
-		.button:hover {
-			background-color: var(--gray3);
-		}
-	}
-
-	.all-champions {
-		margin: 1rem 0 1rem 3rem;
-		align-self: flex-start;
-	}
-
-	.champion-container {
-		margin: 1rem 2rem;
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.splash-container {
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		width: 50%;
-	}
-
-	.splash-link {
-		margin: 0 1rem;
-		padding: 0;
-		width: fit-content;
-		min-width: min(100% - 2rem, 1215px);
-		max-width: 1215px;
-		background-color: transparent;
-	}
-
-	.splash-image {
-		max-width: 100%;
-		aspect-ratio: 1215 / 717; /* Full size */
-		background-image: url(/images/loading-200x200.gif);
-		background-size: 10%;
-		background-position: center;
-		background-repeat: no-repeat;
-	}
-
-	.splash-caption {
-		margin-top: 0.75rem;
-		color: var(--gray1);
-	}
-
-	.lore-container {
-		width: 50%;
-		height: 100%;
-		min-height: 100%;
-	}
-
-	.champion-header {
-		margin: 0 0 0.5rem 0;
-		text-align: center;
-		font-size: 2rem;
-		font-style: italic;
-		color: var(--gold4);
-	}
-
-	.lore-text {
-		margin: 0;
-		line-height: 1.5;
-	}
-
-	.champion-nav-container {
-		display: flex;
-		justify-content: center;
-	}
-
-	.previous-champion,
-	.next-champion {
-		margin: 1rem 0.5rem;
-		min-width: 5rem;
-	}
-
-	@media screen and (orientation: portrait) and (width <= 768px) {
-		.all-champions {
-			margin: 2rem 0 1rem 2rem;
-		}
-
-		.champion-container {
-			flex-direction: column;
-			flex-wrap: wrap;
-		}
-
-		.splash-container {
-			width: 100%;
-		}
-
-		.splash-link {
-			margin: 0;
-			width: 100%
-		}
-
-		.lore-container {
-			width: 100%;
-		}
-	}
-</style>
