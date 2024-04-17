@@ -51,7 +51,8 @@ export default {
 				'10%': '10%'
 			},
 			screens: {
-				tall: { raw: 'screen and (orientation: portrait) and (width <= 768px)' }
+				smartwatch: { raw: '(width <= 502px) and (height <= 502px)' }, // Apple Watch Ultra 2
+				portrait: { raw: 'screen and (orientation: portrait) and (width <= 768px)' }
 			}
 		}
 	},

@@ -36,10 +36,23 @@
 </svelte:head>
 
 <section class="flex flex-col flex-auto justify-center items-center">
-	<a href="/" class="ml-12 mt-8 mb-4 tall:mt-8 tall:ml-6 tall:mb-4 self-start ui-button">&laquo; All Champions</a>
-	<div class="mx-8 my-4 tall:mx-6 flex tall:flex-col tall:flex-wrap gap-4 justify-center items-center">
-		<figure class="flex flex-col items-center w-1/2 tall:w-full">
-			<button type="button" on:click={changeSkinSplash} class="mx-4 w-fit tall:w-full min-w-[min(100%-2rem,1215px)] max-w-[1215px]">
+	<a
+		href="/"
+		class="ml-12 mt-8 mb-4 self-start ui-button
+			   smartwatch:mt-8 smartwatch:ml-6 smartwatch:mb-4
+			   portrait:mt-8 portrait:ml-6 portrait:mb-4">&laquo; All Champions</a
+	>
+	<div
+		class="mx-8 my-4 flex gap-4 justify-center items-center
+			   smartwatch:mx-6 smartwatch:flex-col smartwatch:flex-wrap
+			   portrait:mx-6 portrait:flex-col portrait:flex-wrap"
+	>
+		<figure class="flex flex-col items-center w-1/2 smartwatch:w-full portrait:w-full">
+			<button
+				type="button"
+				on:click={changeSkinSplash}
+				class="mx-4 w-fit smartwatch:w-full portrait:w-full min-w-[min(100%-2rem,1215px)] max-w-[1215px]"
+			>
 				<img
 					src={skin.splashUrl}
 					alt={`Splash art for ${skin.name} skin`}
@@ -48,7 +61,7 @@
 			</button>
 			<figcaption class="mt-3 text-gray-1">{skin.name}</figcaption>
 		</figure>
-		<div class="w-1/2 tall:w-full">
+		<div class="w-1/2 smartwatch:w-full portrait:w-full">
 			<h1 class="mb-2 italic text-3xl text-gold-4">{champion.name.toUpperCase()}, {champion.title.toUpperCase()}</h1>
 			<p>{champion.lore}</p>
 		</div>
