@@ -56,7 +56,7 @@
 				<img
 					src={skin.splashUrl}
 					alt={`Splash art for ${skin.name} skin`}
-					class="aspect-[1215/717] bg-loading-200x200 bg-10% bg-center bg-no-repeat"
+					class="aspect-[1215/717] bg-loading-spinner-white bg-20% bg-center bg-no-repeat"
 				/>
 			</button>
 			<figcaption class="mt-3 text-gray-1">{skin.name}</figcaption>

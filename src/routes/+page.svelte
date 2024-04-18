@@ -25,7 +25,7 @@
 							   min-h-[var(--square-icon-size)] max-h-[var(--square-icon-size)]
 							   border border-solid border-black
 							   transition-transform duration-200 hover:scale-105 hover:border-gold-4
-							   bg-loading-50x50 bg-center bg-no-repeat"
+							   bg-loading-spinner-white bg-50% bg-center bg-no-repeat"
 					/>
 				</a>
 				<figcaption class="mt-1 font-beaufort font-bold">{name.toUpperCase()}</figcaption>
