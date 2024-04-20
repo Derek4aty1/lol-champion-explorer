@@ -7,17 +7,12 @@
 	$: nextChampName = data?.nextChampName;
 	$: skin = champion?.skins[skinIndex];
 
-	function changeSkinSplash(event: MouseEvent) {
-		const isMouseClick = event.screenX !== 0 && event.screenY !== 0;
-		const imageWidth = (event.target as HTMLElement).clientWidth;
-		const mouseX = event.offsetX;
-		if (isMouseClick && mouseX < imageWidth / 2) {
-			// Left side
-			skinIndex = skinIndex === 0 ? champion.skins.length - 1 : skinIndex - 1;
-		} else {
-			// Right side
-			skinIndex = (skinIndex + 1) % champion.skins.length;
-		}
+	function previousSkinSplash() {
+		skinIndex = skinIndex === 0 ? champion.skins.length - 1 : skinIndex - 1;
+	}
+
+	function nextSkinSplash() {
+		skinIndex = (skinIndex + 1) % champion.skins.length;
 	}
 </script>
 
@@ -51,22 +46,34 @@
 			   portrait:mb-4 portrait:ml-6 portrait:mt-8">&laquo; All Champions</a
 	>
 	<div
-		class="mx-8 my-4 flex items-center justify-center gap-4
+		class="mx-12 my-4 flex items-center justify-center gap-x-8 gap-y-4
 			   smartwatch:mx-6 smartwatch:flex-col smartwatch:flex-wrap
 			   portrait:mx-6 portrait:flex-col portrait:flex-wrap"
 	>
-		<figure class="flex w-1/2 flex-col items-center smartwatch:w-full portrait:w-full">
-			<button
-				type="button"
-				on:click={changeSkinSplash}
-				class="mx-4 w-fit min-w-[min(100%-2rem,1215px)] max-w-[1215px] smartwatch:w-full portrait:w-full"
-			>
+		<figure class="relative flex w-1/2 flex-col items-center smartwatch:w-full portrait:w-full">
+			<div class="relative min-w-full">
+				<button
+					type="button"
+					on:click={previousSkinSplash}
+					class="absolute left-0 top-1/2 h-full w-1/2 -translate-y-1/2 transform rounded-r pl-4 text-left opacity-70 transition duration-200
+						   hover:bg-gradient-to-r hover:from-gray-3 hover:to-transparent hover:opacity-100"
+				>
+					&#10094;
+				</button>
 				<img
 					src={skin.splashUrl}
 					alt={`Splash art for ${skin.name} skin`}
-					class="aspect-[1215/717] bg-loading-spinner-white bg-20% bg-center bg-no-repeat"
+					class="aspect-[1215/717] w-full min-w-full max-w-[1215px] bg-loading-spinner-white bg-20% bg-center bg-no-repeat smartwatch:w-full portrait:w-full"
 				/>
-			</button>
+				<button
+					type="button"
+					on:click={nextSkinSplash}
+					class="absolute right-0 top-1/2 h-full w-1/2 -translate-y-1/2 transform rounded-l pr-4 text-right opacity-70 transition duration-200
+						   hover:bg-gradient-to-l hover:from-gray-3 hover:to-transparent hover:opacity-100"
+				>
+					&#10095;
+				</button>
+			</div>
 			<figcaption class="mt-3 text-gray-1">{skin.name}</figcaption>
 		</figure>
 		<div class="w-1/2 smartwatch:w-full portrait:w-full">

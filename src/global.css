@@ -17,8 +17,7 @@
 	}
 
 	a,
-	button,
-	img {
+	button {
 		@apply hover:cursor-lol-pointer-select;
 	}
 
