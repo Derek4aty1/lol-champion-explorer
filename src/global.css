@@ -4,7 +4,7 @@
 
 @layer base {
 	html {
-		@apply scroll-smooth font-spiegel cursor-lol-pointer;
+		@apply cursor-lol-pointer scroll-smooth font-spiegel;
 	}
 
 	h1,
@@ -177,6 +177,6 @@
 
 @layer components {
 	.ui-button {
-		@apply px-1.5 py-1 min-w-20 text-center text-gold-1 bg-gray-2 hover:bg-gray-3;
+		@apply min-w-20 bg-gray-2 px-1.5 py-1 text-center text-gold-1 hover:bg-gray-3;
 	}
 }

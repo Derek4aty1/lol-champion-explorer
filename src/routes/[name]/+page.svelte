@@ -24,9 +24,17 @@
 <svelte:head>
 	<!-- Preload previous, current, and next skins -->
 	{#key skin}
-		<link rel="preload" as="image" href={champion.skins[skinIndex === 0 ? champion.skins.length - 1 : skinIndex - 1].splashUrl} />
+		<link
+			rel="preload"
+			as="image"
+			href={champion.skins[skinIndex === 0 ? champion.skins.length - 1 : skinIndex - 1].splashUrl}
+		/>
 		<link rel="preload" as="image" href={champion.skins[skinIndex].splashUrl} />
-		<link rel="preload" as="image" href={champion.skins[skinIndex === champion.skins.length - 1 ? 0 : skinIndex + 1].splashUrl} />
+		<link
+			rel="preload"
+			as="image"
+			href={champion.skins[skinIndex === champion.skins.length - 1 ? 0 : skinIndex + 1].splashUrl}
+		/>
 	{/key}
 	<!-- <link rel="preload" as="image" href={champion.passive.imageUrl} />
 	{#each champion.spells as spell}
@@ -35,23 +43,23 @@
 	<title>{champion.name} - League of Legends Champion Explorer</title>
 </svelte:head>
 
-<section class="flex flex-col flex-auto justify-center items-center">
+<section class="flex flex-auto flex-col items-center justify-center">
 	<a
 		href="/"
-		class="ml-12 mt-8 mb-4 self-start ui-button
-			   smartwatch:mt-8 smartwatch:ml-6 smartwatch:mb-4
-			   portrait:mt-8 portrait:ml-6 portrait:mb-4">&laquo; All Champions</a
+		class="ui-button mb-4 ml-12 mt-8 self-start
+			   smartwatch:mb-4 smartwatch:ml-6 smartwatch:mt-8
+			   portrait:mb-4 portrait:ml-6 portrait:mt-8">&laquo; All Champions</a
 	>
 	<div
-		class="mx-8 my-4 flex gap-4 justify-center items-center
+		class="mx-8 my-4 flex items-center justify-center gap-4
 			   smartwatch:mx-6 smartwatch:flex-col smartwatch:flex-wrap
 			   portrait:mx-6 portrait:flex-col portrait:flex-wrap"
 	>
-		<figure class="flex flex-col items-center w-1/2 smartwatch:w-full portrait:w-full">
+		<figure class="flex w-1/2 flex-col items-center smartwatch:w-full portrait:w-full">
 			<button
 				type="button"
 				on:click={changeSkinSplash}
-				class="mx-4 w-fit smartwatch:w-full portrait:w-full min-w-[min(100%-2rem,1215px)] max-w-[1215px]"
+				class="mx-4 w-fit min-w-[min(100%-2rem,1215px)] max-w-[1215px] smartwatch:w-full portrait:w-full"
 			>
 				<img
 					src={skin.splashUrl}
@@ -62,7 +70,7 @@
 			<figcaption class="mt-3 text-gray-1">{skin.name}</figcaption>
 		</figure>
 		<div class="w-1/2 smartwatch:w-full portrait:w-full">
-			<h1 class="mb-2 italic text-3xl text-gold-4">{champion.name.toUpperCase()}, {champion.title.toUpperCase()}</h1>
+			<h1 class="mb-2 text-3xl italic text-gold-4">{champion.name.toUpperCase()}, {champion.title.toUpperCase()}</h1>
 			<p>{champion.lore}</p>
 		</div>
 	</div>

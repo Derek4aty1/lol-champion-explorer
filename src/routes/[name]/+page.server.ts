@@ -6,7 +6,9 @@ export async function load({ params }) {
 	const allChampions = await api.getAllChampions();
 
 	const championName = params.name;
-	const championIndex = allChampions.findIndex((champion) => champion.name.toLowerCase() === championName.toLowerCase());
+	const championIndex = allChampions.findIndex(
+		(champion) => champion.name.toLowerCase() === championName.toLowerCase()
+	);
 
 	if (championIndex === -1) {
 		error(404, `${championName} champion not found...`);
