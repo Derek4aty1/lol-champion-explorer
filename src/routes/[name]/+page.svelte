@@ -50,15 +50,18 @@
 			   smartwatch:mx-6 smartwatch:flex-col smartwatch:flex-wrap
 			   portrait:mx-6 portrait:flex-col portrait:flex-wrap"
 	>
-		<figure class="relative flex w-1/2 flex-col items-center smartwatch:w-full portrait:w-full">
+		<figure class="relative w-1/2 smartwatch:w-full portrait:w-full">
 			<div class="relative min-w-full">
+				<!-- Previous and next skin buttons need pseduo elements since gradients cannot be transitioned -->
 				<button
 					type="button"
 					on:click={previousSkinSplash}
-					class="absolute left-0 top-1/2 h-full w-1/2 -translate-y-1/2 transform rounded-r pl-4 text-left opacity-70 transition duration-200
-						   hover:bg-gradient-to-r hover:from-gray-3 hover:to-transparent hover:opacity-100"
+					class="absolute left-0 top-1/2 z-[1] h-full w-1/3 -translate-y-1/2 transform rounded-r pl-4 text-left opacity-70 transition duration-200
+						   after:absolute after:left-0 after:top-0 after:z-[2] after:h-full after:w-full
+						   after:bg-gradient-to-r after:from-gray-3 after:to-transparent after:opacity-0 after:transition after:duration-200 after:content-['']
+						   hover:opacity-100 after:hover:opacity-100"
 				>
-					&#10094;
+					<span class="relative z-[3]">&#10094;</span>
 				</button>
 				<img
 					src={skin.splashUrl}
@@ -68,10 +71,12 @@
 				<button
 					type="button"
 					on:click={nextSkinSplash}
-					class="absolute right-0 top-1/2 h-full w-1/2 -translate-y-1/2 transform rounded-l pr-4 text-right opacity-70 transition duration-200
-						   hover:bg-gradient-to-l hover:from-gray-3 hover:to-transparent hover:opacity-100"
+					class="absolute right-0 top-1/2 z-[1] h-full w-1/3 -translate-y-1/2 transform rounded-l pr-4 text-right opacity-70 transition duration-200
+						   after:absolute after:left-0 after:top-0 after:z-[2] after:h-full after:w-full
+						   after:bg-gradient-to-l after:from-gray-3 after:to-transparent after:opacity-0 after:transition after:duration-200 after:content-['']
+						   hover:opacity-100 after:hover:opacity-100"
 				>
-					&#10095;
+					<span class="relative z-[3]">&#10095;</span>
 				</button>
 			</div>
 			<figcaption class="mt-3 text-gray-1">{skin.name}</figcaption>
