@@ -1,6 +1,9 @@
 <script lang="ts">
 	export let data;
 	const { allChampions } = data;
+
+	let filter = '';
+	$: filtered = allChampions.filter((champion) => champion.name.trim().toLowerCase().includes(filter.trim().toLowerCase()));
 </script>
 
 <svelte:head>
@@ -14,7 +17,15 @@
 			   gap-4 self-center border-[1rem]
 			   border-gray-3 bg-dark-blue-gradient p-4"
 	>
-		{#each allChampions as { name, squareIconUrl }}
+		<div class="flex w-full justify-center">
+			<input
+				type="search"
+				placeholder="Search..."
+				bind:value={filter}
+				class="p-2 w-[min(100%,2.5*var(--square-icon-size))] bg-gold-1 text-hextech-black placeholder-gray-1"
+			/>
+		</div>
+		{#each filtered as { name, squareIconUrl }}
 			<figure class="flex min-w-[var(--square-icon-size)] max-w-[var(--square-icon-size)] flex-col">
 				<a href="/{name}">
 					<img
@@ -31,6 +42,9 @@
 				<figcaption class="mt-1 font-beaufort font-bold">{name.toUpperCase()}</figcaption>
 			</figure>
 		{/each}
+		{#if filtered.length === 0}
+			<p>No champions found...</p>
+		{/if}
 	</div>
 </section>
 

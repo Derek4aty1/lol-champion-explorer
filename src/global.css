@@ -29,6 +29,10 @@
 		@apply text-center italic;
 	}
 
+	input {
+		@apply rounded-none
+	}
+
 	@font-face {
 		font-family: 'Spiegel';
 		font-style: normal;
