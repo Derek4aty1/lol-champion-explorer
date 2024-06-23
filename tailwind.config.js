@@ -44,7 +44,7 @@ export default {
 				'blue-gradient': `linear-gradient(to right, ${theme('colors.blue.4')}, ${theme('colors.blue.2')})`,
 				'dark-blue-gradient': `linear-gradient(to right, ${theme('colors.blue.6')}, ${theme('colors.blue.7')})`,
 				'gold-gradient': `linear-gradient(to right, ${theme('colors.gold.5')}, ${theme('colors.gold.4')})`,
-				'loading-spinner-white': 'url(/images/loading-spinner-white.svg)'
+				'throbber-white': 'url(/images/throbber-white.svg)'
 			}),
 			backgroundSize: {
 				'10%': '10%',
@@ -57,10 +57,6 @@ export default {
 				'80%': '80%',
 				'90%': '90%',
 				'100%': '100%'
-			},
-			screens: {
-				smartwatch: { raw: '(width <= 502px) and (height <= 502px)' }, // Apple Watch Ultra 2
-				portrait: { raw: 'screen and (orientation: portrait) and (width <= 768px)' }
 			}
 		}
 	},

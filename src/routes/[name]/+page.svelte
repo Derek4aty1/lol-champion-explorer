@@ -18,19 +18,12 @@
 </svelte:head>
 
 <section class="flex flex-auto flex-col items-center justify-center">
-	<a
-		href="/"
-		class="ui-button mb-4 ml-12 mt-8 self-start
-			   smartwatch:mb-4 smartwatch:ml-6 smartwatch:mt-8
-			   portrait:mb-4 portrait:ml-6 portrait:mt-8">&laquo; All Champions</a
-	>
+	<a href="/" class="ui-button mb-4 ml-6 mt-8 self-start lg:mb-4 lg:ml-12 lg:mt-8">&laquo; All Champions</a>
 	<div
-		class="mx-12 my-4 flex items-center justify-center gap-x-8 gap-y-4
-			   smartwatch:mx-6 smartwatch:flex-col smartwatch:flex-wrap
-			   portrait:mx-6 portrait:flex-col portrait:flex-wrap"
+		class="mx-6 my-4 flex flex-col flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:mx-12 lg:flex-row lg:flex-nowrap"
 	>
-		<SplashSlideshow {skins} class="w-1/2 smartwatch:w-full portrait:w-full" />
-		<div class="w-1/2 smartwatch:w-full portrait:w-full">
+		<SplashSlideshow {skins} class="w-full lg:w-1/2" />
+		<div class="w-full lg:w-1/2">
 			<h1 class="mb-2 text-3xl italic text-gold-4">{champion.name.toUpperCase()}, {champion.title.toUpperCase()}</h1>
 			<p>{champion.lore}</p>
 		</div>

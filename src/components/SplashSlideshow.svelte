@@ -44,7 +44,7 @@
 		<img
 			src={currentSkin.splashUrl}
 			alt={`Splash art for ${currentSkin.name} skin`}
-			class="aspect-[1215/717] w-full min-w-full max-w-[1215px] bg-loading-spinner-white bg-20% bg-center bg-no-repeat smartwatch:w-full portrait:w-full"
+			class="aspect-[1215/717] w-full max-w-[1215px] bg-throbber-white bg-20% bg-center bg-no-repeat"
 		/>
 		<button
 			type="button"

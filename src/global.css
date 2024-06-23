@@ -31,7 +31,7 @@
 	}
 
 	input {
-		@apply rounded-none
+		@apply rounded-none;
 	}
 
 	@font-face {
