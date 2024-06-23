@@ -17,7 +17,8 @@
 	}
 
 	a,
-	button {
+	button,
+	input {
 		@apply hover:cursor-lol-pointer-select;
 	}
 

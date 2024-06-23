@@ -22,8 +22,6 @@ export async function load({ params }) {
 	const champId = allChampions[championIndex].id;
 	const splashChampion = await api.getSplashChampion(champId);
 
-	params.name = splashChampion.name;
-
 	return {
 		splashChampion,
 		previousChampName,
