@@ -1,10 +1,10 @@
 <script lang="ts">
-	export let data;
-	const { allChampions } = data;
+	let { data } = $props();
 
-	let filter = '';
-	$: filtered = allChampions.filter((champion) =>
-		champion.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
+	let allChampions = $derived(data.allChampions);
+	let filter = $state('');
+	let filteredChampions = $derived(
+		allChampions.filter((champion) => champion.name.trim().toLowerCase().includes(filter.trim().toLowerCase()))
 	);
 </script>
 
@@ -25,8 +25,8 @@
 				class="w-[66%] bg-gold-1 p-2 text-hextech-black placeholder-gray-1 lg:w-96"
 			/>
 		</div>
-		{#each filtered as { name, squareIconUrl }}
-			<figure class="flex flex-col">
+		{#each filteredChampions as { name, squareIconUrl }}
+			<figure class="flex min-w-[120px] max-w-[120px] flex-col">
 				<a href="/{name}">
 					<img
 						src={squareIconUrl}
@@ -38,7 +38,7 @@
 				<figcaption class="mt-1 font-beaufort font-bold">{name.toUpperCase()}</figcaption>
 			</figure>
 		{/each}
-		{#if filtered.length === 0}
+		{#if filteredChampions.length === 0}
 			<p>No champions found...</p>
 		{/if}
 	</div>

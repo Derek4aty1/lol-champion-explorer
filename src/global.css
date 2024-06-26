@@ -34,6 +34,22 @@
 		@apply rounded-none;
 	}
 
+	/* Input clear button */
+	/* For Webkit browsers (Chrome, Safari, Edge) */
+	input::-webkit-search-cancel-button {
+		@apply hover:cursor-lol-pointer-select;
+	}
+
+	/* For Firefox */
+	input::-moz-search-cancel-button {
+		@apply hover:cursor-lol-pointer-select;
+	}
+
+	/* For Internet Explorer and Edge (legacy) */
+	input::-ms-clear {
+		@apply hover:cursor-lol-pointer-select;
+	}
+
 	@font-face {
 		font-family: 'Spiegel';
 		font-style: normal;

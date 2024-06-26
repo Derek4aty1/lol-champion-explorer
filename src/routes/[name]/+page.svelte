@@ -1,12 +1,11 @@
 <script lang="ts">
 	import SplashSlideshow, { type Skin } from '$components/SplashSlideshow.svelte';
+	let { data } = $props();
 
-	export let data;
-
-	$: champion = data.splashChampion;
-	$: skins = champion.skins.map((skin) => ({ name: skin.name, splashUrl: skin.splashUrl }) as Skin);
-	$: previousChampName = data.previousChampName;
-	$: nextChampName = data.nextChampName;
+	let champion = $derived(data.splashChampion);
+	let skins = $derived(champion.skins.map((skin) => ({ name: skin.name, splashUrl: skin.splashUrl }) as Skin));
+	let previousChampName = $derived(data.previousChampName);
+	let nextChampName = $derived(data.nextChampName);
 </script>
 
 <svelte:head>
