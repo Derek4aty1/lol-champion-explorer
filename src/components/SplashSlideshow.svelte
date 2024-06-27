@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export type Skin = {
+	export type SplashSkin = {
 		name: string;
 		splashUrl: string;
 	};
@@ -7,19 +7,12 @@
 
 <script lang="ts">
 	type Props = {
-		skins: Skin[];
+		skins: SplashSkin[];
 		class?: string;
 	};
 	let { skins, class: className = '' }: Props = $props();
 	let currentSkinIndex = $state(0);
 	let currentSkin = $derived(skins[currentSkinIndex]);
-
-	// Reset skin index to 0 on same-page navigation before DOM updates
-	$effect.pre(() => {
-		if (skins) {
-			currentSkinIndex = 0;
-		}
-	});
 
 	function previousSkinSplash() {
 		currentSkinIndex = currentSkinIndex === 0 ? skins.length - 1 : currentSkinIndex - 1;

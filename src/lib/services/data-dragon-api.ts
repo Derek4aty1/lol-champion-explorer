@@ -1,37 +1,6 @@
-type Champion = {
-	id: string; // Used for all Data Dragon API endpoints. Typically the same as name, but not always.
-	name: string;
-	squareIconUrl: string;
-};
-
-type SplashChampion = {
-	id: string;
-	name: string;
-	title: string;
-	lore: string;
-	passive: {
-		name: string;
-		description: string;
-		imageUrl: string;
-	};
-	spells: {
-		id: string;
-		name: string;
-		description: string;
-		imageUrl: string;
-	}[];
-	skins: {
-		id: string;
-		num: number;
-		name: string;
-		chromas: boolean;
-		splashUrl: string;
-	}[];
-};
-
 // https://developer.riotgames.com/docs/lol
 export class DataDragonAPI {
-	private static readonly BASE_URL: string = 'https://ddragon.leagueoflegends.com';
+	public static readonly BASE_URL: string = 'https://ddragon.leagueoflegends.com';
 	public API_VERSION: string | null;
 
 	constructor(apiVersion: string | null = null) {
@@ -43,8 +12,7 @@ export class DataDragonAPI {
 			const response = await fetch(`${DataDragonAPI.BASE_URL}/api/versions.json`);
 			const versions = await response.json();
 			return versions[0];
-		} catch (error) {
-			console.error('Failed to fetch API version:', error);
+		} catch (err) {
 			throw new Error('Failed to fetch API version.');
 		}
 	}
@@ -55,45 +23,188 @@ export class DataDragonAPI {
 		}
 	}
 
-	async getAllChampions(): Promise<Champion[]> {
+	async getAllChampions(): Promise<AllChampionsResponse> {
 		await this.ensureApiVersion();
 
 		const url = `${DataDragonAPI.BASE_URL}/cdn/${this.API_VERSION}/data/en_US/champion.json`;
 		const response = await fetch(url);
-		const jsonData = await response.json();
+		const allChampionsResponse: AllChampionsResponse = await response.json();
 
-		const allChampions: Champion[] = Object.values<Champion>(jsonData.data)
-			.map(({ id, name }) => ({
-				id,
-				name,
-				squareIconUrl: `${DataDragonAPI.BASE_URL}/cdn/${this.API_VERSION}/img/champion/${id}.png`
-			}))
-			.sort((a, b) => a.name.localeCompare(b.name));
-
-		return allChampions;
+		return allChampionsResponse;
 	}
 
-	async getSplashChampion(id: string): Promise<SplashChampion> {
+	async getChampion(id: string): Promise<ChampionResponse> {
 		await this.ensureApiVersion();
 
 		const url = `${DataDragonAPI.BASE_URL}/cdn/${this.API_VERSION}/data/en_US/champion/${id}.json`;
 		const response = await fetch(url);
-		const jsonData = await response.json();
+		const championResponse: ChampionResponse = await response.json();
 
-		const splashChampion: SplashChampion = jsonData['data'][id];
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		splashChampion.passive.imageUrl = `${DataDragonAPI.BASE_URL}/cdn/${this.API_VERSION}/img/passive/${(splashChampion as any).passive['image']['full']}`;
-		splashChampion.spells.forEach((spell) => {
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			spell.imageUrl = `${DataDragonAPI.BASE_URL}/cdn/${this.API_VERSION}/img/spell/${(spell as any)['image']['full']}`;
-		});
-		splashChampion.skins.forEach((skin) => {
-			skin.splashUrl = `${DataDragonAPI.BASE_URL}/cdn/img/champion/splash/${id}_${skin.num}.jpg`;
-			if (skin.name === 'default') {
-				skin.name = splashChampion.name;
-			}
-		});
-
-		return splashChampion;
+		return championResponse;
 	}
 }
+
+type AllChampionsResponse = {
+	type: string;
+	format: string;
+	version: string;
+	data: {
+		[key: string]: {
+			version: string;
+			id: string;
+			key: string;
+			name: string;
+			title: string;
+			blurb: string;
+			info: {
+				attack: number;
+				defense: number;
+				magic: number;
+				difficulty: number;
+			};
+			image: {
+				full: string;
+				sprite: string;
+				group: string;
+				x: number;
+				y: number;
+				w: number;
+				h: number;
+			};
+			tags: string[];
+			partype: string;
+			stats: {
+				hp: number;
+				hpperlevel: number;
+				mp: number;
+				mpperlevel: number;
+				movespeed: number;
+				armor: number;
+				armorperlevel: number;
+				spellblock: number;
+				spellblockperlevel: number;
+				attackrange: number;
+				hpregen: number;
+				hpregenperlevel: number;
+				mpregen: number;
+				mpregenperlevel: number;
+				crit: number;
+				critperlevel: number;
+				attackdamage: number;
+				attackdamageperlevel: number;
+				attackspeedperlevel: number;
+				attackspeed: number;
+			};
+		};
+	};
+};
+
+type ChampionResponse = {
+	type: string;
+	format: string;
+	version: string;
+	data: {
+		[key: string]: {
+			id: string;
+			key: string;
+			name: string;
+			title: string;
+			image: {
+				full: string;
+				sprite: string;
+				group: string;
+				x: number;
+				y: number;
+				w: number;
+				h: number;
+			};
+			skins: {
+				id: string;
+				num: number;
+				name: string;
+				chromas: boolean;
+			}[];
+			lore: string;
+			blurb: string;
+			allytips: string[];
+			enemytips: string[];
+			tags: string[];
+			partype: string;
+			info: {
+				attack: number;
+				defense: number;
+				magic: number;
+				difficulty: number;
+			};
+			stats: {
+				hp: number;
+				hpperlevel: number;
+				mp: number;
+				mpperlevel: number;
+				movespeed: number;
+				armor: number;
+				armorperlevel: number;
+				spellblock: number;
+				spellblockperlevel: number;
+				attackrange: number;
+				hpregen: number;
+				hpregenperlevel: number;
+				mpregen: number;
+				mpregenperlevel: number;
+				crit: number;
+				critperlevel: number;
+				attackdamage: number;
+				attackdamageperlevel: number;
+				attackspeedperlevel: number;
+				attackspeed: number;
+			};
+			spells: {
+				id: string;
+				name: string;
+				description: string;
+				tooltip: string;
+				leveltip: {
+					label: string[];
+					effect: string[];
+				};
+				maxrank: number;
+				cooldown: number[];
+				cooldownBurn: string;
+				cost: number[];
+				costBurn: string;
+				dataValues: unknown;
+				effect: (number[] | null)[];
+				effectBurn: (string | null)[];
+				vars: unknown[];
+				costType: string;
+				maxammo: string;
+				range: number[];
+				rangeBurn: string;
+				image: {
+					full: string;
+					sprite: string;
+					group: string;
+					x: number;
+					y: number;
+					w: number;
+					h: number;
+				};
+				resource: string;
+			}[];
+			passive: {
+				name: string;
+				description: string;
+				image: {
+					full: string;
+					sprite: string;
+					group: string;
+					x: number;
+					y: number;
+					w: number;
+					h: number;
+				};
+			};
+			recommended: unknown[];
+		};
+	};
+};

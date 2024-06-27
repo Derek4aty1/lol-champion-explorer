@@ -1,6 +1,6 @@
 <header class="sticky top-0 z-50 bg-gold-gradient">
 	<nav class="flex">
-		<a href="/" class="m-3 flex items-center">
+		<a class="m-3 flex items-center" href="/">
 			<img
 				src="/images/l-icon-128x128.png"
 				alt="League of Legends Letter L logo"

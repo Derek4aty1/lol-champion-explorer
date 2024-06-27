@@ -1,7 +1,7 @@
 <script lang="ts">
 	let { data } = $props();
 
-	let allChampions = $derived(data.allChampions);
+	let allChampions = $derived(data.homePageChampions);
 	let filter = $state('');
 	let filteredChampions = $derived(
 		allChampions.filter((champion) => champion.name.trim().toLowerCase().includes(filter.trim().toLowerCase()))
