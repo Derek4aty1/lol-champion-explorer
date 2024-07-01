@@ -7,8 +7,8 @@ export async function load({ params }) {
 	const api = new DataDragonAPI();
 	const allChampions = await getAllChampions(api);
 
-	const championParam = params.championName;
-	const championIndex = allChampions.findIndex((champion) => champion.name === championParam);
+	const championNameParam = params.championName;
+	const championIndex = allChampions.findIndex((champion) => champion.name === championNameParam);
 
 	if (championIndex === -1) {
 		error(404, 'Not Found');

@@ -27,12 +27,13 @@
 		</div>
 		{#each filteredChampions as { name, squareIconUrl }}
 			<figure class="flex min-w-[120px] max-w-[120px] flex-col">
-				<a href="/{name}">
+				<a class="transition duration-200 focus:scale-105 focus:border-gold-4" href="/{name}">
 					<img
 						src={squareIconUrl}
 						alt={`${name} square icon`}
 						loading="lazy"
-						class="min-h-[120px] min-w-[120px] border border-solid border-black bg-throbber-white bg-50% bg-center bg-no-repeat transition-transform duration-200 hover:scale-105 hover:border-gold-4"
+						class="min-h-[120px] min-w-[120px] border border-solid border-black bg-throbber-white bg-50% bg-center bg-no-repeat transition duration-200
+							   hover:scale-105 hover:border-gold-4"
 					/>
 				</a>
 				<figcaption class="mt-1 font-beaufort font-bold">{name.toUpperCase()}</figcaption>
