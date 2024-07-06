@@ -8,7 +8,9 @@ export default {
 		extend: {
 			cursor: {
 				'lol-pointer': 'url(/images/cursor.png), auto',
-				'lol-pointer-select': 'url(/images/cursor-select.png), auto'
+				'lol-pointer-select': 'url(/images/cursor-select.png), auto',
+				'lol-pointer-legacy': 'url(/images/cursor-legacy.png), auto',
+				'lol-pointer-legacy-select': 'url(/images/cursor-legacy-select.png), auto'
 			},
 			fontFamily: {
 				spiegel: 'Spiegel',
@@ -63,8 +65,8 @@ export default {
 		}
 	},
 	plugins: [
-		plugin(function( { addVariant }) {
-			addVariant('hocus', ['&:hover', '&:focus'])
+		plugin(function ({ addVariant }) {
+			addVariant('hocus', ['&:hover', '&:focus']);
 		})
 	]
 };

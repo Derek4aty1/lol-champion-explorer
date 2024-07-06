@@ -16,14 +16,11 @@ export async function load() {
 
 	const homePageChampions: HomePageChampion[] = champions
 		.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-		.map((champion) => {
-			return {
-				id: champion.id,
-				name: champion.name,
-				squareIconUrl: `${DataDragonAPI.BASE_URL}/cdn/${apiVersion}/img/champion/${champion.id}.png`
-			};
-		});
-
+		.map((champion) => ({
+			id: champion.id,
+			name: champion.name,
+			squareIconUrl: `${DataDragonAPI.BASE_URL}/cdn/${apiVersion}/img/champion/${champion.id}.png`
+		}));
 	return {
 		homePageChampions
 	};

@@ -33,7 +33,7 @@ export class DataDragonAPI {
 		return allChampionsResponse;
 	}
 
-	async getChampion(id: string): Promise<ChampionResponse> {
+	async getChampionById(id: string): Promise<ChampionResponse> {
 		await this.ensureApiVersion();
 
 		const url = `${DataDragonAPI.BASE_URL}/cdn/${this.API_VERSION}/data/en_US/champion/${id}.json`;

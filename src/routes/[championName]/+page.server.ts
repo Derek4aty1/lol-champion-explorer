@@ -15,7 +15,7 @@ export async function load({ params }) {
 	}
 
 	const championId = allChampions[championIndex].id;
-	const championResponse = await api.getChampion(championId);
+	const championResponse = await api.getChampionById(championId);
 	const apiVersion = api.API_VERSION;
 	const champion = Object.values(championResponse.data)[0];
 

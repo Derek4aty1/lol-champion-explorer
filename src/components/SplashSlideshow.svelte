@@ -17,13 +17,14 @@
 	function changeSkinSplash(event: MouseEvent, next: boolean) {
 		const mouseClick = !(event.screenX == 0 && event.screenY == 0);
 		if (mouseClick) {
-			const target = event.target as HTMLElement;
-			target?.blur();
+			const button = event.target as HTMLElement;
+			button?.blur();
 		}
 
 		if (next) {
 			currentSkinIndex = (currentSkinIndex + 1) % skins.length;
-		} else { // previous
+		} else {
+			// previous
 			currentSkinIndex = currentSkinIndex === 0 ? skins.length - 1 : currentSkinIndex - 1;
 		}
 	}
