@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	type Props = {
 		images: SlideshowImage[];
@@ -18,8 +18,9 @@
 	let { images, class: className = '', autoplay = true, durationMs = 5000 }: Props = $props();
 
 	let currentImageIndex = $state(0);
-	let offset = $state(0);
+	let imageXOffset = $derived(-100 * currentImageIndex);
 	let autoplayIntveralId: number | null = $state(null);
+	let softTransition = $state(true);
 
 	onMount(() => {
 		if (autoplay) startAutoplay();
@@ -31,20 +32,21 @@
 
 	function previousImage(event: MouseEvent) {
 		currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-		updateOffset();
+		softTransition = currentImageIndex === images.length - 1 ? false : true; // Wrapping around
 		blurIfMouseClick(event);
 	}
 
 	function nextImage(event: MouseEvent) {
 		currentImageIndex = (currentImageIndex + 1) % images.length;
-		updateOffset();
-		if (autoplay && currentImageIndex === images.length - 1) stopAutoplay();
+		softTransition = currentImageIndex === 0 ? false : true; // Wrapping around
+		if (autoplay && currentImageIndex === images.length - 1) stopAutoplay(); // Reached last image
 		blurIfMouseClick(event);
 	}
 
 	/** Enabling opacity change on focus for mobile users, so blurring previous and next buttons on desktop mouse click */
 	function blurIfMouseClick(event: MouseEvent) {
 		if (!event) return;
+		
 		const mouseClick = !(event.screenX == 0 && event.screenY == 0);
 		if (mouseClick) {
 			const button = event.target as HTMLElement;
@@ -52,20 +54,17 @@
 		}
 	}
 
-	function updateOffset() {
-		offset = -100 * currentImageIndex;
-	}
-
 	function startAutoplay() {
-		if (currentImageIndex === images.length - 1) return;
+		if (autoplayIntveralId !== null || currentImageIndex === images.length - 1) return;
+
 		autoplayIntveralId = setInterval(nextImage, durationMs);
 	}
 
 	function stopAutoplay() {
-		if (autoplayIntveralId !== null) {
-			clearInterval(autoplayIntveralId);
-			autoplayIntveralId = null;
-		}
+		if (autoplayIntveralId === null) return;
+
+		clearInterval(autoplayIntveralId);
+		autoplayIntveralId = null;
 	}
 </script>
 
@@ -94,17 +93,22 @@
 	onmouseleave={startAutoplay}
 >
 	<div
-		class="relative flex gap-4 transition-transform duration-500 ease-in-out"
-		style="transform: translateX(calc({offset}% - {currentImageIndex} * 1rem))"
+		class="relative flex gap-4 transition-transform ease-in-out {softTransition ? 'duration-500' : 'duration-0'}"
+		style="transform: translateX(calc({imageXOffset}% - {currentImageIndex} * 1rem));"
 	>
 		{#each images as image}
-			<img class="aspect-[1215/717] min-w-full" src={image.url} alt={image.alt} loading="lazy" />
+			<img
+				class="aspect-[1215/717] min-w-full bg-throbber-white bg-20% bg-center bg-no-repeat"
+				src={image.url}
+				alt={image.alt}
+				loading="lazy"
+			/>
 		{/each}
 	</div>
 	<p class="mt-3 text-center italic text-gray-1">{images[currentImageIndex].label}</p>
 	<div class="absolute bottom-8 left-0 h-1 w-full bg-gray-2">
 		<div
-			class="tranistion-width h-full bg-blue-4 duration-500"
+			class="tranistion-width h-full bg-blue-4 {softTransition ? 'duration-500' : 'duration-0'}"
 			style="width: {((currentImageIndex + 1) / images.length) * 100}%;"
 		></div>
 	</div>
