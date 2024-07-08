@@ -7,7 +7,9 @@
 </script>
 
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import type { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
+	import emblaCarouselSvelte from 'embla-carousel-svelte';
+	import Autoplay from 'embla-carousel-autoplay';
 
 	type Props = {
 		images: SlideshowImage[];
@@ -18,102 +20,80 @@
 	let { images, class: className = '', autoplay = true, durationMs = 5000 }: Props = $props();
 
 	let currentImageIndex = $state(0);
-	let imageXOffset = $derived(-100 * currentImageIndex);
-	let autoplayIntveralId: number | null = $state(null);
-	let softTransition = $state(true);
+	let currentImageLabel = $derived(images[currentImageIndex].label);
+	let progressBarWidthStyle = $derived(`${((currentImageIndex + 1) / images.length) * 100}%`);
 
-	onMount(() => {
-		if (autoplay) startAutoplay();
-	});
+	let emblaApi: EmblaCarouselType;
+	let options: EmblaOptionsType = { loop: true, duration: 20 };
+	let plugins = autoplay
+		? [Autoplay({ delay: durationMs, stopOnInteraction: false, stopOnMouseEnter: true, stopOnLastSnap: true })]
+		: [];
 
-	onDestroy(() => {
-		if (autoplay) stopAutoplay();
-	});
+	function onEmblaInit(event: CustomEvent<EmblaCarouselType>) {
+		emblaApi = event.detail;
+		emblaApi.on('select', () => (currentImageIndex = emblaApi.selectedScrollSnap()));
+	}
 
 	function previousImage(event: MouseEvent) {
-		currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-		softTransition = currentImageIndex === images.length - 1 ? false : true; // Wrapping around
+		emblaApi.scrollPrev();
 		blurIfMouseClick(event);
 	}
 
 	function nextImage(event: MouseEvent) {
-		currentImageIndex = (currentImageIndex + 1) % images.length;
-		softTransition = currentImageIndex === 0 ? false : true; // Wrapping around
-		if (autoplay && currentImageIndex === images.length - 1) stopAutoplay(); // Reached last image
+		emblaApi.scrollNext();
 		blurIfMouseClick(event);
 	}
 
-	/** Enabling opacity change on focus for mobile users, so blurring previous and next buttons on desktop mouse click */
+	/** Enabling opacity change on focus for mobile users, so removing focus from previous and next buttons on desktop mouse click */
 	function blurIfMouseClick(event: MouseEvent) {
 		if (!event) return;
-		
+
 		const mouseClick = !(event.screenX == 0 && event.screenY == 0);
 		if (mouseClick) {
 			const button = event.target as HTMLElement;
 			button?.blur();
 		}
 	}
-
-	function startAutoplay() {
-		if (autoplayIntveralId !== null || currentImageIndex === images.length - 1) return;
-
-		autoplayIntveralId = setInterval(nextImage, durationMs);
-	}
-
-	function stopAutoplay() {
-		if (autoplayIntveralId === null) return;
-
-		clearInterval(autoplayIntveralId);
-		autoplayIntveralId = null;
-	}
 </script>
 
 <svelte:head>
-	<!-- Preload previous, current, and next images -->
-	{#key currentImageIndex}
-		<link
-			rel="preload"
-			as="image"
-			href={images[currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1].url}
-		/>
-		<link rel="preload" as="image" href={images[currentImageIndex].url} />
-		<link
-			rel="preload"
-			as="image"
-			href={images[currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1].url}
-		/>
-	{/key}
+	<!-- All images are lazy loaded except readily available previous, current, and next images. This saves bandwidth as loading all images at once is unnecessary if the user navigates away before seeing them all. -->
+	<link
+		rel="preload"
+		as="image"
+		href={images[currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1].url}
+	/>
+	<link rel="preload" as="image" href={images[currentImageIndex].url} />
+	<link
+		rel="preload"
+		as="image"
+		href={images[currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1].url}
+	/>
 </svelte:head>
 
+<!-- svelte-ignore event_directive_deprecated -->
 <div
-	class="{className} relative overflow-hidden"
-	role="region"
-	aria-label="Image slideshow"
-	onmouseenter={stopAutoplay}
-	onmouseleave={startAutoplay}
+	class="embla-root relative overflow-hidden {className}"
+	use:emblaCarouselSvelte={{ options, plugins }}
+	on:emblaInit={onEmblaInit}
 >
-	<div
-		class="relative flex gap-4 transition-transform ease-in-out {softTransition ? 'duration-500' : 'duration-0'}"
-		style="transform: translateX(calc({imageXOffset}% - {currentImageIndex} * 1rem));"
-	>
-		{#each images as image}
+	<div class="relative flex gap-4">
+		{#each images as image, i}
 			<img
-				class="aspect-[1215/717] min-w-full bg-throbber-white bg-20% bg-center bg-no-repeat"
+				class="aspect-[1215/717] min-w-0 flex-shrink-0 flex-grow-0 basis-full bg-throbber-white bg-20% bg-center bg-no-repeat
+					   {i === images.length - 1 ? 'mr-4' : ''}"
 				src={image.url}
 				alt={image.alt}
 				loading="lazy"
 			/>
 		{/each}
 	</div>
-	<p class="mt-3 text-center italic text-gray-1">{images[currentImageIndex].label}</p>
+	<p class="mt-3 text-center italic text-gray-1">{currentImageLabel}</p>
 	<div class="absolute bottom-8 left-0 h-1 w-full bg-gray-2">
-		<div
-			class="tranistion-width h-full bg-blue-4 {softTransition ? 'duration-500' : 'duration-0'}"
-			style="width: {((currentImageIndex + 1) / images.length) * 100}%;"
-		></div>
+		<div class="tranistion-width h-full bg-blue-4 duration-500" style="width: {progressBarWidthStyle};"></div>
 	</div>
 	<div class="absolute top-1/2 flex w-full -translate-y-[calc(50%+18px)] transform justify-between">
-		<button class="bg-black p-2 text-white opacity-50 hocus:opacity-100" onclick={previousImage}>&#10094;</button>
-		<button class="bg-black p-2 text-white opacity-50 hocus:opacity-100" onclick={nextImage}>&#10095;</button>
+		<button class="bg-black p-2 text-white opacity-50 hocus:opacity-100" on:click={previousImage}>&#10094;</button>
+		<button class="bg-black p-2 text-white opacity-50 hocus:opacity-100" on:click={nextImage}>&#10095;</button>
 	</div>
 </div>
