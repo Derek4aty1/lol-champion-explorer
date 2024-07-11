@@ -47,8 +47,7 @@ export default {
 			backgroundImage: (theme) => ({
 				'blue-gradient': `linear-gradient(to right, ${theme('colors.blue.4')}, ${theme('colors.blue.2')})`,
 				'dark-blue-gradient': `linear-gradient(to right, ${theme('colors.blue.6')}, ${theme('colors.blue.7')})`,
-				'gold-gradient': `linear-gradient(to right, ${theme('colors.gold.5')}, ${theme('colors.gold.4')})`,
-				'throbber-white': 'url(/images/throbber-white.svg)'
+				'gold-gradient': `linear-gradient(to right, ${theme('colors.gold.5')}, ${theme('colors.gold.4')})`
 			}),
 			backgroundSize: {
 				'10%': '10%',

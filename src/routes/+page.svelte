@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	let { data } = $props();
 
 	let allChampions = $derived(data.homePageChampions);
@@ -6,6 +8,16 @@
 	let filteredChampions = $derived(
 		allChampions.filter((champion) => champion.name.trim().toLowerCase().includes(filter.trim().toLowerCase()))
 	);
+
+	let mounted = $state(false);
+	onMount(() => {
+		mounted = true;
+	});
+
+	function turnImageOpaque(event: Event) {
+		const image = event.target as HTMLImageElement;
+		image.style.opacity = '1';
+	}
 </script>
 
 <svelte:head>
@@ -27,14 +39,20 @@
 		</div>
 		{#each filteredChampions as { name, squareIconUrl }}
 			<figure class="flex min-w-[120px] max-w-[120px] flex-col">
-				<a class="transition duration-200 focus:scale-105 focus:border-gold-4" href="/{name}">
-					<img
-						src={squareIconUrl}
-						alt={`${name} square icon`}
-						loading="lazy"
-						class="min-h-[120px] min-w-[120px] border border-solid border-black bg-throbber-white bg-50% bg-center bg-no-repeat transition duration-200
-							   hover:scale-105 hover:border-gold-4"
-					/>
+				<a
+					href="/{name}"
+					class="min-h-[120px] min-w-[120px] transition duration-200 focus:scale-105 focus:border-gold-4"
+				>
+					{#if mounted}
+						<img
+							src={squareIconUrl}
+							alt={`${name} square icon`}
+							loading="lazy"
+							onload={turnImageOpaque}
+							class="border border-solid border-black opacity-0 transition duration-200
+							   	   hover:scale-105 hover:border-gold-4"
+						/>
+					{/if}
 				</a>
 				<figcaption class="mt-1 font-beaufort font-bold">{name.toUpperCase()}</figcaption>
 			</figure>

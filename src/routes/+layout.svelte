@@ -8,7 +8,7 @@
 
 <Header />
 
-<main style="display: contents;">
+<main class="contents">
 	{@render children()}
 </main>
 

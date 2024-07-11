@@ -10,6 +10,7 @@
 	import type { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
 	import emblaCarouselSvelte from 'embla-carousel-svelte';
 	import Autoplay from 'embla-carousel-autoplay';
+	import { onMount } from 'svelte';
 
 	type Props = {
 		images: SlideshowImage[];
@@ -22,6 +23,18 @@
 	let currentImageIndex = $state(0);
 	let currentImageLabel = $derived(images[currentImageIndex].label);
 	let progressBarWidthStyle = $derived(`${((currentImageIndex + 1) / images.length) * 100}%`);
+	let firstImageLoaded = $state(false);
+
+	onMount(() => {
+		const image = document.getElementById('image-0') as HTMLImageElement;
+		if (image.complete) {
+			firstImageLoaded = true;
+		} else {
+			image.onload = () => {
+				firstImageLoaded = true;
+			};
+		}
+	});
 
 	let emblaApi: EmblaCarouselType;
 	let options: EmblaOptionsType = { loop: true, duration: 20 };
@@ -73,18 +86,20 @@
 
 <!-- svelte-ignore event_directive_deprecated -->
 <div
-	class="embla-root relative overflow-hidden {className}"
 	use:emblaCarouselSvelte={{ options, plugins }}
 	on:emblaInit={onEmblaInit}
+	class="embla-root relative overflow-hidden transition-opacity duration-[1250ms] {className}"
+	style={firstImageLoaded ? 'opacity: 1;' : 'opacity: 0;'}
 >
 	<div class="relative flex gap-4">
 		{#each images as image, i}
 			<img
-				class="aspect-[1215/717] min-w-0 flex-shrink-0 flex-grow-0 basis-full bg-throbber-white bg-20% bg-center bg-no-repeat
-					   {i === images.length - 1 ? 'mr-4' : ''}"
 				src={image.url}
 				alt={image.alt}
 				loading="lazy"
+				id="image-{i}"
+				class="aspect-[1215/717] min-w-0 flex-shrink-0 flex-grow-0 basis-full
+					   {i === images.length - 1 ? 'mr-4' : ''}"
 			/>
 		{/each}
 	</div>

@@ -1,6 +1,6 @@
 <header class="sticky top-0 z-50 bg-gold-gradient">
 	<nav class="flex">
-		<a class="m-3 flex items-center transition duration-200 focus:scale-110" href="/">
+		<a href="/" class="m-3 flex items-center transition duration-200 focus:scale-110">
 			<img
 				src="/images/l-icon-128x128.png"
 				alt="League of Legends Letter L logo"
@@ -8,9 +8,9 @@
 			/>
 		</a>
 		<a
-			class="m-3 ml-auto flex items-center transition duration-200 focus:scale-110"
 			href="https://github.com/Derek4aty1/lol-champion-explorer"
 			target="_blank"
+			class="m-3 ml-auto flex items-center transition duration-200 focus:scale-110"
 		>
 			<img
 				src="/images/github-logo-white.svg"

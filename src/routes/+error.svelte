@@ -11,9 +11,9 @@
 </script>
 
 <section class="m-4 flex flex-auto flex-col items-center justify-center">
-	<img class="min-h-[256px] min-w-[256px]" src={errorImage} alt="Error emote" />
+	<img src={errorImage} alt="Error emote" class="min-h-[256px] min-w-[256px]" />
 	<h1 class="text-5xl">
 		{$page.status}: {$page?.error?.message}
 	</h1>
-	<a class="ui-button mt-6" href="/">Return to Home</a>
+	<a href="/" class="ui-button mt-6">Return to Home</a>
 </section>

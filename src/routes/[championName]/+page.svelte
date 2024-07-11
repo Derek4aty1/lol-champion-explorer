@@ -14,8 +14,8 @@
 	);
 
 	let loreTextElement: HTMLElement | null = $state(null);
-	let mounted = $state(false);
 
+	let mounted = $state(false);
 	onMount(() => {
 		mounted = true;
 	});
@@ -42,7 +42,7 @@
 </svelte:head>
 
 <section class="flex flex-auto flex-col items-center justify-center">
-	<a class="ui-button ml-6 mt-8 self-start lg:ml-12 lg:mt-8" href="/">&laquo; All Champions</a>
+	<a href="/" class="ui-button ml-6 mt-8 self-start lg:ml-12 lg:mt-8">&laquo; All Champions</a>
 	<div
 		class="flex w-full flex-col flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-8 lg:flex-row lg:flex-nowrap lg:px-12"
 	>
