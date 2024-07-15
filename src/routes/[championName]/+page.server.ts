@@ -19,6 +19,11 @@ export async function load({ params }) {
 	const apiVersion = api.API_VERSION;
 	const champion = Object.values(championResponse.data)[0];
 
+	// Bug from DataDragon API - not sure if this will get fixed
+	if (champion.id === 'Fiddlesticks') {
+		champion.id = 'FiddleSticks';
+	}
+
 	const splashChampion: SplashChampion = {
 		id: champion.id,
 		name: champion.name,
