@@ -107,8 +107,12 @@
 	<div class="absolute bottom-8 left-0 h-1 w-full bg-gray-2">
 		<div class="tranistion-width h-full bg-blue-4 duration-500" style="width: {progressBarWidthStyle};"></div>
 	</div>
-	<div class="absolute top-1/2 flex w-full -translate-y-[calc(50%+18px)] transform justify-between">
-		<button class="bg-black p-2 text-white opacity-50 hocus:opacity-100" on:click={previousImage}>&#10094;</button>
-		<button class="bg-black p-2 text-white opacity-50 hocus:opacity-100" on:click={nextImage}>&#10095;</button>
+	<div class="pointer-events-none absolute top-1/2 flex w-full -translate-y-[calc(50%+18px)] transform justify-between">
+		<button on:click={previousImage} class="pointer-events-auto bg-black p-2 text-white opacity-50 hocus:opacity-100">
+			&#10094;
+		</button>
+		<button on:click={nextImage} class="pointer-events-auto bg-black p-2 text-white opacity-50 hocus:opacity-100">
+			&#10095;
+		</button>
 	</div>
 </div>
