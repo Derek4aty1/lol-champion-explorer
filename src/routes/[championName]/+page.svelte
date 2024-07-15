@@ -54,7 +54,7 @@
 					{champion.name.toUpperCase()}, {champion.title.toUpperCase()}
 				</h1>
 				<p bind:this={loreTextElement} in:fade={{ delay: 1250, duration: 1250 }} onintroend={turnLoreTextElementOpaque}>
-					{champion.lore}
+					{@html champion.lore}
 				</p>
 			{/if}
 		</div>
