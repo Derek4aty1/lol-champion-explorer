@@ -88,18 +88,18 @@
 <div
 	use:emblaCarouselSvelte={{ options, plugins }}
 	on:emblaInit={onEmblaInit}
-	class="embla-root relative overflow-hidden transition-opacity duration-[1250ms] {className}"
+	class="relative overflow-hidden transition-opacity duration-[1250ms] {className}"
 	style={firstImageLoaded ? 'opacity: 1;' : 'opacity: 0;'}
 >
 	<div class="relative flex gap-4">
-		{#each images as image, i}
+		{#each images as image, index}
 			<img
 				src={image.url}
 				alt={image.alt}
 				loading="lazy"
-				id="image-{i}"
+				id="image-{index}"
 				class="aspect-[1215/717] min-w-0 flex-shrink-0 flex-grow-0 basis-full
-					   {i === images.length - 1 ? 'mr-4' : ''}"
+					   {index === images.length - 1 ? 'mr-4' : ''}"
 			/>
 		{/each}
 	</div>

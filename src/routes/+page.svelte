@@ -27,7 +27,7 @@
 <section class="contents">
 	<h1 class="my-4 text-4xl">LEAGUE&nbsp;OF&nbsp;LEGENDS CHAMPION&nbsp;EXPLORER</h1>
 	<div
-		class="mx-6 mb-4 flex max-w-full flex-wrap justify-center gap-4 self-center border-[1rem] border-gray-3 bg-dark-blue-gradient p-4 lg:max-w-[66%]"
+		class="mx-6 mb-4 flex max-w-full flex-wrap justify-center gap-4 place-self-center border-[1rem] border-gray-3 bg-dark-blue-gradient p-4 lg:max-w-[66%]"
 	>
 		<div class="flex w-full justify-center">
 			<input
