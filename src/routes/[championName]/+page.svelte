@@ -38,9 +38,9 @@
 	}
 
 	function parseHTMLStyling(htmlString: string) {
-		const parser = new DOMParser();
-		const doc = parser.parseFromString(htmlString, 'text/html');
-		return doc.body.textContent || '';
+		// Only replace 2(+) consecutive <br> tags with a single <br>
+		const parsedString = htmlString.replace(/(<br\s*\/?>\s*){2,}/gi, '<br>');
+		return parsedString;
 	}
 </script>
 
@@ -75,14 +75,14 @@
 	{#if mounted}
 		<hr class="w-full border-gold-4" />
 
-		<div class="flex flex-col items-center justify-center">
-			<h1 class="my-8 text-3xl italic text-gold-1">ABILITIES</h1>
+		<div class="flex w-full flex-col items-center justify-center">
+			<h1 class="my-8 w-full text-3xl italic text-gold-1">ABILITIES</h1>
 			<div class="grid w-fit grid-cols-5 gap-x-4">
 				{#each abilities as ability, index}
 					<button
 						onclick={() => (currentAbilityIndex = index)}
 						class="flex-start flex max-w-[128px] flex-col items-center transition duration-200
-						   hover:scale-105 {currentAbilityIndex === index ? '' : 'brightness-50'}"
+						       hover:scale-105 {currentAbilityIndex === index ? '' : 'brightness-50'}"
 					>
 						<figure class="flex flex-col items-center">
 							<figcaption class="text-center text-gold-4">{ABILITY_LABELS[index]}</figcaption>
@@ -92,7 +92,9 @@
 					</button>
 				{/each}
 			</div>
-			<p class="mt-8 max-w-full lg:max-w-[50%]">{parseHTMLStyling(abilities[currentAbilityIndex].description)}</p>
+			<p class="mt-8 min-h-24 max-w-full lg:max-w-[50%]">
+				{@html parseHTMLStyling(abilities[currentAbilityIndex].description)}
+			</p>
 		</div>
 	{/if}
 </section>
