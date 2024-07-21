@@ -1,9 +1,8 @@
 <script lang="ts">
+	import AbilityCard from '$components/AbilityCard.svelte';
 	import Slideshow, { type SlideshowImage } from '$components/Slideshow.svelte';
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
-
-	const ABILITY_LABELS = ['Passive', 'Q', 'W', 'E', 'R'];
 
 	let { data } = $props();
 
@@ -16,25 +15,22 @@
 		}))
 	);
 	let abilities = $derived([champion.passive, ...champion.spells]);
-	let currentAbilityIndex = $state(0);
+	let activeAbilityIndex = $state(0);
 
 	let loreTextElement: HTMLElement | null = $state(null);
-
-	let mounted = $state(false);
-	onMount(() => {
-		mounted = true;
-	});
-
 	$effect.pre(() => {
 		if (loreTextElement) {
 			loreTextElement.style.opacity = '0';
 		}
 	});
 
-	function turnLoreTextElementOpaque() {
-		if (loreTextElement) {
-			loreTextElement.style.opacity = '1';
-		}
+	let mounted = $state(false);
+	onMount(() => {
+		mounted = true;
+	});
+
+	function turnHTMLElementOpaque(event: CustomEvent & { currentTarget: EventTarget & HTMLElement }) {
+		event.currentTarget.style.opacity = '1';
 	}
 
 	function parseHTMLStyling(htmlString: string) {
@@ -63,7 +59,7 @@
 				<h1 in:fly={{ y: 50, duration: 1250 }} class="mb-2 text-3xl italic text-gold-4">
 					{champion.name.toUpperCase()}, {champion.title.toUpperCase()}
 				</h1>
-				<p bind:this={loreTextElement} in:fade={{ delay: 1250, duration: 1250 }} onintroend={turnLoreTextElementOpaque}>
+				<p bind:this={loreTextElement} in:fade={{ delay: 1250, duration: 1250 }} onintroend={turnHTMLElementOpaque}>
 					{@html champion.lore}
 				</p>
 			{/if}
@@ -72,29 +68,19 @@
 </section>
 
 <section class="flex flex-auto flex-col items-center justify-center px-6 py-8 lg:px-12">
-	{#if mounted}
-		<hr class="w-full border-gold-4" />
+	<hr class="w-full border-gold-4" />
 
-		<div class="flex w-full flex-col items-center justify-center">
-			<h1 class="my-8 w-full text-3xl italic text-gold-1">ABILITIES</h1>
-			<div class="grid w-fit grid-cols-5 gap-x-4">
-				{#each abilities as ability, index}
-					<button
-						onclick={() => (currentAbilityIndex = index)}
-						class="flex-start flex max-w-[128px] flex-col items-center transition duration-200
-						       hover:scale-105 {currentAbilityIndex === index ? '' : 'brightness-50'}"
-					>
-						<figure class="flex flex-col items-center">
-							<figcaption class="text-center text-gold-4">{ABILITY_LABELS[index]}</figcaption>
-							<img src={ability.imageUrl} alt="Icon for {ability.name} ability" class="m-2 max-h-[64px] max-w-[64px]" />
-							<figcaption class="text-balance">{ability.name}</figcaption>
-						</figure>
-					</button>
-				{/each}
-			</div>
-			<p class="mt-8 min-h-24 max-w-full lg:max-w-[50%]">
-				{@html parseHTMLStyling(abilities[currentAbilityIndex].description)}
-			</p>
+	<div class="flex w-full flex-col items-center justify-center">
+		<h1 class="my-8 w-full text-3xl italic text-gold-1">ABILITIES</h1>
+		<div class="grid w-fit grid-cols-5 gap-x-4">
+			{#each abilities as ability, index}
+				<AbilityCard {index} {ability} bind:activeAbilityIndex />
+			{/each}
 		</div>
-	{/if}
+		<p class="mt-8 min-h-24 max-w-full lg:max-w-[50%]">
+			{#if mounted}
+				{@html parseHTMLStyling(abilities[activeAbilityIndex].description)}
+			{/if}
+		</p>
+	</div>
 </section>

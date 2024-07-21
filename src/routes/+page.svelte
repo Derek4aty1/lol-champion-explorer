@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import PortraitCard from '$components/PortraitCard.svelte';
 
 	let { data } = $props();
 
@@ -8,16 +8,6 @@
 	let filteredChampions = $derived(
 		allChampions.filter((champion) => champion.name.trim().toLowerCase().includes(filter.trim().toLowerCase()))
 	);
-
-	let mounted = $state(false);
-	onMount(() => {
-		mounted = true;
-	});
-
-	function turnImageOpaque(event: Event) {
-		const image = event.target as HTMLImageElement;
-		image.style.opacity = '1';
-	}
 </script>
 
 <svelte:head>
@@ -38,24 +28,7 @@
 			/>
 		</div>
 		{#each filteredChampions as { name, squareIconUrl }}
-			<figure class="flex min-w-[120px] max-w-[120px] flex-col">
-				<a
-					href="/{name}"
-					class="min-h-[120px] min-w-[120px] transition duration-200 focus:scale-105 focus:border-gold-4"
-				>
-					{#if mounted}
-						<img
-							src={squareIconUrl}
-							alt={`${name} square icon`}
-							loading="lazy"
-							onload={turnImageOpaque}
-							class="border border-solid border-black opacity-0 transition duration-200
-							   	   hover:scale-105 hover:border-gold-4"
-						/>
-					{/if}
-				</a>
-				<figcaption class="mt-1 font-beaufort font-bold">{name.toUpperCase()}</figcaption>
-			</figure>
+			<PortraitCard championName={name} imageUrl={squareIconUrl} />
 		{/each}
 		{#if filteredChampions.length === 0}
 			<p>No champions found...</p>
