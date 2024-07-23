@@ -4,7 +4,7 @@
 
 @layer base {
 	html {
-		@apply cursor-lol-pointer font-spiegel;
+		@apply h-full cursor-lol-pointer font-spiegel;
 	}
 
 	h1,

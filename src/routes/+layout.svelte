@@ -8,7 +8,7 @@
 
 <Header />
 
-<main class="contents">
+<main class="flex flex-1 flex-col p-4">
 	{@render children()}
 </main>
 
