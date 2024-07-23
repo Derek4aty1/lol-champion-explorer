@@ -47,11 +47,9 @@
 	<title>{champion.name} - League of Legends Champion Explorer</title>
 </svelte:head>
 
-<section
-	class="flex min-h-fit flex-auto flex-col items-center justify-center px-6 pt-8 lg:min-h-[calc(100svh-64px)] lg:px-12 lg:py-0"
->
-	<a href="/" class="ui-button mb-8 place-self-start">&laquo; All Champions</a>
-	<div class="flex w-full flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:flex-row lg:flex-nowrap">
+<section class="flex min-h-fit flex-auto flex-col items-center justify-center lg:min-h-[calc(100svh-86px)]">
+	<a href="/" class="ui-button place-self-start">&laquo; All Champions</a>
+	<div class="flex w-full flex-wrap items-center justify-center gap-x-8 gap-y-4 py-8 lg:flex-row lg:flex-nowrap">
 		<Slideshow images={splashSkins} class="w-full lg:w-1/2" />
 		<div class="w-full lg:w-1/2">
 			<!-- TODO: revisit once transitions are fixed -->
@@ -67,7 +65,7 @@
 	</div>
 </section>
 
-<section class="flex flex-auto flex-col items-center justify-center px-6 py-8 lg:px-12">
+<section class="flex flex-auto flex-col items-center justify-center">
 	<hr class="w-full border-gold-4" />
 
 	<div class="flex w-full flex-col items-center justify-center">

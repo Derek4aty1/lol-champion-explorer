@@ -15,23 +15,23 @@
 </svelte:head>
 
 <section class="flex flex-col place-items-center">
-	<h1 class="mb-4 w-full text-4xl">LEAGUE&nbsp;OF&nbsp;LEGENDS CHAMPION&nbsp;EXPLORER</h1>
+	<h1 class="mb-8 w-full text-4xl">LEAGUE&nbsp;OF&nbsp;LEGENDS CHAMPION&nbsp;EXPLORER</h1>
 	<div
-		class="mx-6 mb-4 grid grid-cols-2 justify-items-center gap-4 border-[1rem] border-gray-3 bg-dark-blue-gradient p-4
-			   sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10"
+		class="grid grid-cols-2 justify-items-center gap-8 border-[1rem] border-gray-3 bg-dark-blue-gradient p-8
+			   sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-9"
 	>
 		<input
 			type="search"
 			placeholder="Search..."
 			bind:value={filter}
 			class="col-span-2 w-[66%] bg-gold-1 p-2 text-hextech-black placeholder-gray-1
-				   sm:col-span-4 lg:col-span-6 lg:w-96 xl:col-span-8 2xl:col-span-10"
+				   sm:col-span-3 md:col-span-4 lg:col-span-5 lg:w-96 xl:col-span-7 2xl:col-span-9"
 		/>
 		{#each filteredChampions as { name, squareIconUrl }}
 			<PortraitCard championName={name} imageUrl={squareIconUrl} />
 		{/each}
 		{#if filteredChampions.length === 0}
-			<p>No champions found...</p>
+			<p class="col-span-full w-full text-center">No champions found...</p>
 		{/if}
 	</div>
 </section>

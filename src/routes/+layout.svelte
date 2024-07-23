@@ -8,7 +8,7 @@
 
 <Header />
 
-<main class="flex flex-1 flex-col p-4">
+<main class="flex flex-1 flex-col px-6 py-8 sm:px-8">
 	{@render children()}
 </main>
 
