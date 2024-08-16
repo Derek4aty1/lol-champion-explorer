@@ -10,7 +10,7 @@
 		mounted = true;
 	});
 
-	function setActiveState(event: Event, state: boolean) {
+	function setActiveState(state: boolean) {
 		active = state;
 	}
 
@@ -21,16 +21,16 @@
 </script>
 
 <figure
-	onmouseover={(event) => setActiveState(event, true)}
-	onmouseout={(event) => setActiveState(event, false)}
+	onmouseover={() => setActiveState(true)}
+	onmouseout={() => setActiveState(false)}
 	onfocus={() => {}}
 	onblur={() => {}}
 	class="flex min-w-[120px] max-w-[120px] flex-col"
 >
 	<a
 		href="/{championName}"
-		onfocus={(event) => setActiveState(event, true)}
-		onblur={(event) => setActiveState(event, false)}
+		onfocus={() => setActiveState(true)}
+		onblur={() => setActiveState(false)}
 		class="min-h-[120px] min-w-[120px] transition duration-200"
 	>
 		{#if mounted}
@@ -39,7 +39,7 @@
 				alt={`${championName} square icon`}
 				loading="lazy"
 				onload={turnImageOpaque}
-				class="border border-solid border-black opacity-0 transition duration-200
+				class="border border-solid border-black opacity-0 transition duration-200 active:scale-100
 					   {active ? 'scale-105 border-gold-4' : ''}"
 			/>
 		{/if}

@@ -197,6 +197,6 @@
 
 @layer components {
 	.ui-button {
-		@apply min-w-20 bg-gray-2 px-1.5 py-1 text-center text-gold-1 hocus:bg-gray-3;
+		@apply min-w-20 bg-gray-2 px-1.5 py-1 text-center text-gold-1 transition-transform active:scale-95 hocus:bg-gray-3;
 	}
 }
