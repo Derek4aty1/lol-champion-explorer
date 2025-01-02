@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	export type SlideshowImage = {
 		url: string;
 		alt: string;
@@ -84,10 +84,9 @@
 	/>
 </svelte:head>
 
-<!-- svelte-ignore event_directive_deprecated -->
 <div
 	use:emblaCarouselSvelte={{ options, plugins }}
-	on:emblaInit={onEmblaInit}
+	onemblaInit={onEmblaInit}
 	class="relative overflow-hidden transition-opacity duration-[1250ms] {className}"
 	style={firstImageLoaded ? 'opacity: 1;' : 'opacity: 0;'}
 >
@@ -108,10 +107,10 @@
 		<div class="tranistion-width h-full bg-blue-4 duration-500" style="width: {progressBarWidthStyle};"></div>
 	</div>
 	<div class="pointer-events-none absolute top-1/2 flex w-full -translate-y-[calc(50%+18px)] transform justify-between">
-		<button on:click={previousImage} class="pointer-events-auto bg-black p-2 text-white opacity-50 hocus:opacity-100">
+		<button onclick={previousImage} class="pointer-events-auto bg-black p-2 text-white opacity-50 hocus:opacity-100">
 			&#10094;
 		</button>
-		<button on:click={nextImage} class="pointer-events-auto bg-black p-2 text-white opacity-50 hocus:opacity-100">
+		<button onclick={nextImage} class="pointer-events-auto bg-black p-2 text-white opacity-50 hocus:opacity-100">
 			&#10095;
 		</button>
 	</div>
