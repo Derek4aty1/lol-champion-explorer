@@ -21,6 +21,8 @@
 	let { images, class: className = '', autoplay = true, durationMs = 5000 }: Props = $props();
 
 	let currentImageIndex = $state(0);
+	let prevImageIndex = $derived((currentImageIndex - 1 + images.length) % images.length);
+	let nextImageIndex = $derived((currentImageIndex + 1) % images.length);
 	let currentImageLabel = $derived(images[currentImageIndex].label);
 	let progressBarWidthStyle = $derived(`${((currentImageIndex + 1) / images.length) * 100}%`);
 	let firstImageLoaded = $state(false);
@@ -37,8 +39,8 @@
 	});
 
 	let emblaApi: EmblaCarouselType;
-	let options: EmblaOptionsType = { loop: true, duration: 20 };
-	let plugins = autoplay
+	const options: EmblaOptionsType = { loop: true, duration: 20 };
+	const plugins = autoplay
 		? [Autoplay({ delay: durationMs, stopOnInteraction: false, stopOnMouseEnter: true, stopOnLastSnap: true })]
 		: [];
 
@@ -74,13 +76,13 @@
 	<link
 		rel="preload"
 		as="image"
-		href={images[currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1].url}
+		href={images[prevImageIndex].url}
 	/>
 	<link rel="preload" as="image" href={images[currentImageIndex].url} />
 	<link
 		rel="preload"
 		as="image"
-		href={images[currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1].url}
+		href={images[nextImageIndex].url}
 	/>
 </svelte:head>
 
