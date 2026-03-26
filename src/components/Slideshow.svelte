@@ -73,17 +73,9 @@
 
 <svelte:head>
 	<!-- All images are lazy loaded except readily available previous, current, and next images. This saves bandwidth as loading all images at once is unnecessary if the user navigates away before seeing them all. -->
-	<link
-		rel="preload"
-		as="image"
-		href={images[prevImageIndex].url}
-	/>
+	<link rel="preload" as="image" href={images[prevImageIndex].url} />
 	<link rel="preload" as="image" href={images[currentImageIndex].url} />
-	<link
-		rel="preload"
-		as="image"
-		href={images[nextImageIndex].url}
-	/>
+	<link rel="preload" as="image" href={images[nextImageIndex].url} />
 </svelte:head>
 
 <div

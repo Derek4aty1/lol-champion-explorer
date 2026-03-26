@@ -40,13 +40,15 @@ export async function load({ params }) {
 			description: spell.description,
 			imageUrl: `${DataDragonAPI.BASE_URL}/cdn/${apiVersion}/img/spell/${spell.image.full}`
 		})),
-		skins: champion.skins.map((skin) => ({
-			id: skin.id,
-			num: skin.num,
-			name: skin.name === 'default' ? champion.name : skin.name,
-			chromas: skin.chromas,
-			splashUrl: `${DataDragonAPI.BASE_URL}/cdn/img/champion/splash/${champion.id}_${skin.num}.jpg`
-		}))
+		skins: champion.skins
+			.filter((skin) => skin.parentSkin === undefined) // Skins with parentSkin populated don't have splash art images
+			.map((skin) => ({
+				id: skin.id,
+				num: skin.num,
+				name: skin.name === 'default' ? champion.name : skin.name,
+				chromas: skin.chromas,
+				splashUrl: `${DataDragonAPI.BASE_URL}/cdn/img/champion/splash/${champion.id}_${skin.num}.jpg`
+			}))
 	};
 
 	return {

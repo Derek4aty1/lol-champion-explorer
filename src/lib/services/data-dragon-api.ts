@@ -123,6 +123,7 @@ type ChampionResponse = {
 				num: number;
 				name: string;
 				chromas: boolean;
+				parentSkin: number | undefined;
 			}[];
 			lore: string;
 			blurb: string;
