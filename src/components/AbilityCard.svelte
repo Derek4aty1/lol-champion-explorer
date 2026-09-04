@@ -15,9 +15,13 @@
 
 	let { index, ability, activeAbilityIndex = $bindable() }: Props = $props();
 
-	if (index < 0 || index >= ABILITY_LABELS.length) {
-		throw new Error(`Ability index ${index} is out of range. Must be between 0 and ${ABILITY_LABELS.length - 1}.`);
+	function validateIndex(): void {
+		if (index < 0 || index >= ABILITY_LABELS.length) {
+			throw new Error(`Ability index ${index} is out of range. Must be between 0 and ${ABILITY_LABELS.length - 1}.`);
+		}
 	}
+
+	validateIndex();
 </script>
 
 <button

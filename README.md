@@ -5,8 +5,8 @@
   <a href="https://github.com/Derek4aty1/lol-champion-explorer">
     <img src="static/images/l-icon-128x128.png" alt="Logo">
   </a>
-  
-<h3 align="center">League&nbsp;of&nbsp;Legends Champion Explorer</h3>
+
+  <h3 align="center">League&nbsp;of&nbsp;Legends Champion Explorer</h3>
 
   <p align="center">
     A project showcasing all of the current champions in League&nbsp;of&nbsp;Legends and their assets.
